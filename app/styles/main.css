@@ -348,7 +348,7 @@ input[type='range']::-ms-thumb {
 }
 
 .button:active {
-    margin: 1px 0 0;
+  opacity: 0.9;
 }
 
 .button:before,

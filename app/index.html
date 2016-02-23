@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juice</title>
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Juice">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/touch/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/touch/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/touch/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/touch/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/touch/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/touch/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/touch/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/touch/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/touch/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/images/touch/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/touch/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/touch/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/touch/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/touch/manifest.json">
+    <link rel="mask-icon" href="/images/touch/safari-pinned-tab.svg" color="#2d3047">
+    <link rel="shortcut icon" href="/images/touch/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/touch/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/touch/browserconfig.xml">
+    <meta name="theme-color" content="2D3047">
+
+    <!-- Your styles -->
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+<body>
+    <header>
+        <div class="layout__controls">
+            <input type="range" step="1" min="1" max="100" class="slider" />
+            <input type="text" id="quality" class="inset-quality" />
+        </div>
+    </header>
+    <div class="layout__body">
+        <main class="layout__content">
+            <!-- content -->
+            <div id="spinner"></div>
+            <div style="display: inline-block;">
+                <div id="compcaption"></div>
+                <img id="dstimg" download="export.jpg" />
+            </div>
+            <!-- end content -->
+        </main>
+        <nav class="layout__nav layout__columns"></nav>
+        <aside class="layout__aside layout__columns"></aside>
+    </div>
+    <footer>
+
+        <!-- Statistics -->
+        <div class="compression-container">
+         <div class="compression-panel">
+
+          <div class="compression-stat">
+            <div class="compression-stat__label">Old Size</div>
+            <div class="compression-stat__number compression-stat__os">0KB</div>
+          </div>
+
+          <div class="compression-stat">
+            <div class="compression-stat__label">New Size</div>
+            <div class="compression-stat__number compression-stat__kb">0KB</div>
+          </div>
+
+          <div class="compression-stat">
+            <div class="compression-stat__label">Savings</div>
+            <div class="compression-stat__number compression-stat__pc">0%</div>
+          </div>
+          </div>
+        </div>
+
+        <!-- Hack to allow styling of the file picker -->
+        <label class="button" for="filepicker" tabindex="1">Choose Photo</label>
+        <input type="file" id="filepicker" style="visibility: hidden; width: 0px;"></input>
+        <button id="saveBtn" class="button" disabled>Save</button>
+    </footer>
+
+
+    <!-- build:js(app/) ../../scripts/main.min.js -->
+    <script src="scripts/spin.js"></script>
+    <script src="scripts/modernizr.min.js"></script>
+    <script src="scripts/Blob.js"></script>
+    <script src="scripts/canvas-toBlob.js"></script>
+    <script src="scripts/FileSaver.min.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- Built with love using Juice -->
+  </body>
+</html>

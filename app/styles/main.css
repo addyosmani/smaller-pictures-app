@@ -80,16 +80,15 @@ body {
 
 /* common colors */
 
-header,
-footer {
-    background: #8338EC;
+header {
+  text-align: center;
 }
 
 header,
 footer {
     color: #fff;
     padding: 10px;
-    text-align: center;
+    background: #8338EC;
 }
 
 footer a {
@@ -138,7 +137,7 @@ footer button {
 
 footer label.button,
 footer button {
-    width: 34%;
+    width: 36%;
 }
 
 

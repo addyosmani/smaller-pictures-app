@@ -1,0 +1,2 @@
+# squash-app
+Squash PWA

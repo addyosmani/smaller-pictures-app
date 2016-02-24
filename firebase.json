@@ -1,0 +1,9 @@
+{
+  "firebase": "juicer",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

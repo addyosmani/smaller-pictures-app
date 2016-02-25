@@ -126,10 +126,12 @@ class juicerUI extends utils {
       return parseInt(this.r.value, 10) || 75;
     }
 
-    set jpegQuality(value = 75) {
-      this.r.value = value;
-      this.l.value = value;
-      this.s.textContent = this.getTrackStyleStr(this.r, this.getValStr(this.r));
+    set jpegQuality(value) {
+      if (value) {
+        this.r.value = value;
+        this.l.value = value;
+        this.s.textContent = this.getTrackStyleStr(this.r, this.getValStr(this.r));
+      }
     }
 
     orchestrateEncode(el) {
@@ -199,11 +201,11 @@ class juicerUI extends utils {
         this.exportCompressedImage(this.dstImgElem);
       });
 
-      this.r.addEventListener('input', (e) => {
+      this.r.addEventListener('change', (e) => {
         this.orchestrateEncode(this.r);
       });
 
-      this.l.addEventListener('input', (e) => {
+      this.l.addEventListener('change', (e) => {
         this.orchestrateEncode(this.l);
       });
     }

@@ -79,20 +79,13 @@ body {
     /*background: green;*/
 }
 
-
 /* common colors */
 header {
   text-align: center;
 }
 
-footer {
-  padding: 10px;
-}
-
-header,
-footer {
+header, footer {
   color: #fff;
-  /*padding: 10px;*/
   background: #8338EC;
 }
 
@@ -406,7 +399,8 @@ footer {
     position: fixed;
     left: 0px;
     bottom: 0px;
-    height: 56px;
+    height: 62px;
+    padding-top: 10px;
     width: 100%;
     text-align: center;
 }

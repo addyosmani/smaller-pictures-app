@@ -159,23 +159,25 @@ class juicerUI extends utils {
     }
 
     readFile(fileUrl) {
-      const reader = new FileReader();
-      reader.readAsDataURL(fileUrl);
-      reader.onload = (e) => {
-        const origUrl = reader.result;
-        const out = document.createElement('img');
-        out.style.width = '';
-        out.setAttribute('src', origUrl);
-        out.onload = (e) => {
-          this.showCompressionContainer();
-          this.showLayoutControlsHeader();
-          this.origImageData = this.getPixelsFromImageElement(out);
-          this.encode(this.jpegQuality);
+      if (fileUrl) {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileUrl);
+        reader.onload = (e) => {
+          const origUrl = reader.result;
+          const out = document.createElement('img');
+          out.style.width = '';
+          out.setAttribute('src', origUrl);
+          out.onload = (e) => {
+            this.showCompressionContainer();
+            this.showLayoutControlsHeader();
+            this.origImageData = this.getPixelsFromImageElement(out);
+            this.encode(this.jpegQuality);
+          };
         };
-      };
-      reader.onerror = (e) => {
-        console.log('Error', e);
-      };
+        reader.onerror = (e) => {
+          console.log('Error', e);
+        };
+      }
     }
 
     formatFilesizeInfo(origFileSize, quality, w, h, inbytes, outbytes) {
@@ -197,11 +199,11 @@ class juicerUI extends utils {
         this.exportCompressedImage(this.dstImgElem);
       });
 
-      this.r.addEventListener('click', (e) => {
+      this.r.addEventListener('input', (e) => {
         this.orchestrateEncode(this.r);
       });
 
-      this.l.addEventListener('click', (e) => {
+      this.l.addEventListener('input', (e) => {
         this.orchestrateEncode(this.l);
       });
     }

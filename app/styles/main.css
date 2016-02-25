@@ -30,7 +30,10 @@ body {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    background: #3B2F93;
+    /*background: #3B2F93;*/
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGQ9Ik0xIDJWMGgxdjFIMHYxeiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=");
+    background-size: 16px 16px;
+    background-color: #f2f2f2;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -44,6 +47,7 @@ body {
     -ms-flex: 1;
     flex: 1;
 }
+
 
 .layout__content {
     -webkit-box-flex: 1;
@@ -68,9 +72,7 @@ body {
 }
 
 .layout__content {
-    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGQ9Ik0xIDJWMGgxdjFIMHYxeiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=");
-    background-size: 16px 16px;
-    background-color: #f2f2f2;
+/*was here*/
 }
 
 .layout__columns {
@@ -79,23 +81,26 @@ body {
 
 
 /* common colors */
-
 header {
   text-align: center;
 }
 
+footer {
+  padding: 10px;
+}
+
 header,
 footer {
-    color: #fff;
-    padding: 10px;
-    background: #8338EC;
+  color: #fff;
+  /*padding: 10px;*/
+  background: #8338EC;
 }
 
 footer a {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 h1 {
@@ -130,19 +135,12 @@ header.info strong {
     color: #F45FA0;
 }
 
-footer button {
-    padding: 14px;
-    border: none;
-}
-
 footer label.button,
 footer button {
     width: 36%;
 }
 
-
 /*slider*/
-
 
 /*http://codepen.io/thebabydino/pen/JoOomG*/
 
@@ -344,6 +342,8 @@ input[type='range']::-ms-thumb {
     background-position: 0 100%;
     border-top: 1px solid #ff6daa;
     border-bottom: 1px solid #bb0342;
+    border-left: 0;
+    border-right: 0;
 }
 
 .button:active {
@@ -408,6 +408,7 @@ footer {
     bottom: 0px;
     height: 56px;
     width: 100%;
+    text-align: center;
 }
 
 .compression-container {
@@ -416,6 +417,7 @@ footer {
     bottom: 120%;
     position: absolute;
     text-align: left;
+    opacity: 0;
 }
 
 .compression-stat {
@@ -442,7 +444,6 @@ footer {
     position: relative;
     padding: 13px;
     width: 130px;
-    /*100%;*/
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 6px;
@@ -453,4 +454,30 @@ footer {
 .compression-panel:after {
     right: -20px;
     width: 20px;
+}
+
+
+/* Delight */
+.layout__controls {
+  padding: 10px;
+}
+
+.layout__controls__header {
+  opacity: 0;
+  height: 98px;
+}
+
+.layout__controls__header .layout__controls {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.layout__controls__header.fade-in .layout__controls  {
+  opacity: 1;
 }

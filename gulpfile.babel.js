@@ -42,7 +42,7 @@ gulp.task('lint', () =>
   gulp.src([
     'app/scripts/main.js',
     //'app/scripts/index.js',
-    '!app/scripts/pttjpeg.js',
+    '!app/scripts/encoder.js',
     '!app/scripts/modernizer.min.js',
     '!app/scripts/spin.js',
     '!app/scripts/FileSaver.min.js',
@@ -122,17 +122,20 @@ gulp.task('scripts', () =>
       './app/scripts/Blob.js',
       './app/scripts/canvas-toBlob.js',
       './app/scripts/FileSaver.min.js',
-      './app/scripts/index.js',
+      './app/scripts/utils/utils.js',
+      './app/scripts/juicerUI/juicerUI.js',
+      './app/scripts/app.js',
       './app/scripts/main.js'
       // Other scripts
     ])
       .pipe($.newer('.tmp/scripts'))
       //.pipe($.sourcemaps.init())
-      .pipe($.babel())
+      .pipe($.if(['utils.js','juicerUI.js', 'app.js'], $.babel()))
+      //.pipe($.babel())
       //.pipe($.sourcemaps.write())
       .pipe(gulp.dest('.tmp/scripts'))
       .pipe($.concat('main.min.js'))
-      .pipe($.uglify())
+      //.pipe($.uglify())
       // Output files
       .pipe($.size({title: 'scripts'}))
       //.pipe($.sourcemaps.write('.'))
@@ -144,11 +147,11 @@ gulp.task('ptt', () =>
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
-      './app/scripts/pttjpeg.js'
+      './app/scripts/encoder.js'
     ])
       .pipe($.newer('.tmp/scripts'))
       .pipe(gulp.dest('.tmp/scripts'))
-      .pipe($.concat('pttjpeg.js'))
+      .pipe($.concat('encoder.js'))
       .pipe($.uglify())
       .pipe($.size({title: 'ptt'}))
       .pipe(gulp.dest('dist/scripts'))
@@ -158,15 +161,6 @@ gulp.task('ptt', () =>
 gulp.task('html', () => {
   return gulp.src('app/**/*.html')
     .pipe($.useref({searchPath: '{.tmp,app}'}))
-    // Remove any unused CSS
-    .pipe($.if('*.css', $.uncss({
-      html: [
-        'app/index.html'
-      ],
-      // CSS Selectors for UnCSS to ignore
-      ignore: []
-    })))
-
     // Concatenate and minify styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.cssnano()))

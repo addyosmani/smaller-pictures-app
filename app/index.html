@@ -34,7 +34,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="/images/touch/mstile-144x144.png">
     <meta name="msapplication-config" content="/images/touch/browserconfig.xml">
-    <meta name="theme-color" content="#5a1583">
+    <meta name="theme-color" content="#5025AA">
 
     <!-- Your styles -->
     <link rel="stylesheet" href="styles/main.css">
@@ -83,7 +83,7 @@
         </div>
 
         <!-- Hack to allow styling of the file picker -->
-        <label class="button" for="filepicker" tabindex="1">Choose Photo</label>
+        <label id="labelForPicker" class="button" for="filepicker" tabindex="1">Choose Photo</label>
         <input type="file" id="filepicker" style="visibility: hidden; width: 0px;"></input>
         <button id="saveBtn" class="button" disabled>Save</button>
     </footer>

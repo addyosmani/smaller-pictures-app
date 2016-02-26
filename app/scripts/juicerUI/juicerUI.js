@@ -35,6 +35,7 @@ class juicerUI extends utils {
       this.r = document.querySelector('input[type=range]');
       this.prefs = ['webkit-slider-runnable', 'moz-range'];
       this.picker = document.querySelector('#filepicker');
+      this.labelForPicker = document.querySelector('#labelForPicker');
       this.saveBtn = document.querySelector('#saveBtn');
       this.dstImgElem = document.getElementById("dstimg");
       this.compressionContainer = document.querySelector('.compression-container');
@@ -57,7 +58,7 @@ class juicerUI extends utils {
 
     encode(quality = 75) {
 
-      const displayWidth = '100%';
+      const displayWidth = '100%'; //calc(100% / 1.5)'; //100%';
       // Create Web Worker instance on the global
       if (this.worker === undefined) {
         this.worker = new Worker('scripts/encoder.js');
@@ -144,6 +145,7 @@ class juicerUI extends utils {
       for (let elem of [this.l, this.r, this.saveBtn]) {
         elem.disabled = false;
       }
+      this.r.focus();
     }
 
     disableRangeSelection() {
@@ -201,6 +203,20 @@ class juicerUI extends utils {
         this.exportCompressedImage(this.dstImgElem);
       });
 
+      // a11y: Handle keydown on our label/file picker hack.
+      // window.addEventListener('keydown', (e) => {
+      //   if (e.keyCode === 13 && e.target === this.labelForPicker) {
+      //     this.picker.click();
+      //   }
+      // });
+
+      window.addEventListener('keypress', (e) => {
+        if (e.keyCode === 13 && e.target === this.labelForPicker) {
+          this.picker.click();
+        }
+      });
+
+      /*change all*/
       this.r.addEventListener('change', (e) => {
         this.orchestrateEncode(this.r);
       });

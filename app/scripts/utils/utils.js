@@ -37,7 +37,7 @@ class utils {
     exportCompressedImage(imgElem) {
       if (!!imgElem && imgElem.src.length) {
         let blob = this.convertDataURLToBlob(imgElem.src);
-        saveAs(blob, 'export.jpeg');
+        saveAs(blob, 'juicer-' + (new Date().toISOString()) + '.jpeg');
       }
     }
 

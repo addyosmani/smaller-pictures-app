@@ -30,6 +30,7 @@ body {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+    overflow: hidden;
 
     /* Use checkerboard for the background */
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGQ9Ik0xIDJWMGgxdjFIMHYxeiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=");
@@ -417,7 +418,7 @@ input[type='range']::-ms-thumb {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     left: 0px;
     bottom: 0px;
     height: 62px;

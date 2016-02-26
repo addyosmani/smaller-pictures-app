@@ -38,6 +38,7 @@ class juicerUI extends utils {
       this.labelForPicker = document.querySelector('#labelForPicker');
       this.saveBtn = document.querySelector('#saveBtn');
       this.dstImgElem = document.getElementById("dstimg");
+      this.cta = document.querySelector('.cta');
       this.compressionContainer = document.querySelector('.compression-container');
       this.layoutControlsHeader = document.querySelector('.layout__controls__header');
       this.compressionStatKB = document.querySelector('.compression-stat__kb');
@@ -192,10 +193,15 @@ class juicerUI extends utils {
       this.compressionStatPC.textContent = (100 - (newSize / oldSize) * 100).toFixed(1) + '%';
     }
 
+    hideCallToAction() {
+      this.cta.remove();
+    }
+
     setupEvents() {
       this.picker.addEventListener('change', (e) => {
         this.readFile(this.picker.files[0]);
         this.origFileSize = this.picker.files[0].size;
+        this.hideCallToAction();
         this.enableRangeSelection();
       });
 
@@ -203,12 +209,10 @@ class juicerUI extends utils {
         this.exportCompressedImage(this.dstImgElem);
       });
 
-      // a11y: Handle keydown on our label/file picker hack.
-      // window.addEventListener('keydown', (e) => {
-      //   if (e.keyCode === 13 && e.target === this.labelForPicker) {
-      //     this.picker.click();
-      //   }
-      // });
+      this.cta.addEventListener('click', (e) => {
+        console.log('ctaaaa');
+        this.picker.click();
+      });
 
       window.addEventListener('keypress', (e) => {
         if (e.keyCode === 13 && e.target === this.labelForPicker) {

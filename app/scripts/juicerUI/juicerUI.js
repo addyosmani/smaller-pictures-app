@@ -48,13 +48,18 @@ class juicerUI extends utils {
       // On construction, append our stylesheet
       document.body.appendChild(this.s);
 
-      this.jpegQuality = jpegQuality;
+      window.addEventListener('load', (e) => {
 
-      // Disable range selection
-      this.disableRangeSelection();
+        // Init default encoding quality
+        this.jpegQuality = jpegQuality;
 
-      // Initialise events
-      this.setupEvents();
+        // Disable range selection
+        this.disableRangeSelection();
+
+        // Initialise events
+        this.setupEvents();
+
+      });
     }
 
     encode(quality = 75) {
@@ -130,7 +135,8 @@ class juicerUI extends utils {
 
     set jpegQuality(value) {
       if (value) {
-        this.r.value = value;
+        // this.r.value = value;
+        this.r.MaterialSlider.change(value);
         this.l.value = value;
         this.s.textContent = this.getTrackStyleStr(this.r, this.getValStr(this.r));
       }
@@ -147,6 +153,9 @@ class juicerUI extends utils {
         elem.disabled = false;
       }
       this.r.focus();
+
+      this.picker.hidden = true;
+      this.saveBtn.parentElement.hidden = false;
     }
 
     disableRangeSelection() {
@@ -210,7 +219,6 @@ class juicerUI extends utils {
       });
 
       this.cta.addEventListener('click', (e) => {
-        console.log('ctaaaa');
         this.picker.click();
       });
 

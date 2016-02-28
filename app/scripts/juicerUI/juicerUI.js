@@ -40,6 +40,7 @@ class juicerUI extends utils {
       this.dstImgElem = document.getElementById("dstimg");
       this.cta = document.querySelector('.cta');
       this.drawer = document.querySelector('#layout');
+      this.fabFileSelect = document.querySelector('#fabFileSelect');
       this.newProject = document.querySelector('.new-project');
       this.compressionContainer = document.querySelector('.compression-container');
       this.layoutControlsHeader = document.querySelector('.layout__controls__header');
@@ -156,7 +157,7 @@ class juicerUI extends utils {
       }
       this.r.focus();
 
-      this.picker.hidden = true;
+      this.picker.parentElement.hidden = true;
       this.saveBtn.parentElement.hidden = false;
     }
 
@@ -172,7 +173,6 @@ class juicerUI extends utils {
 
     showLayoutControlsHeader() {
       this.layoutControlsHeader.classList.add('fade-in');
-      //this.layoutControlsHeader.hidden = false;
     }
 
     readFile(fileUrl) {
@@ -210,12 +210,18 @@ class juicerUI extends utils {
     }
 
     runPhotoSelection() {
-      this.readFile(this.picker.files[0]);
-      this.origFileSize = this.picker.files[0].size;
-      this.hideCallToAction();
-      this.enableRangeSelection();
-      // Make sure the drawer is closed
-      this.drawer.MaterialLayout.toggleDrawer();
+      if (this.picker.files[0]) {
+        this.readFile(this.picker.files[0]);
+        this.origFileSize = this.picker.files[0].size;
+        this.hideCallToAction();
+        this.enableRangeSelection();
+        // Make sure the drawer is closed
+        document.querySelector('.mdl-layout__drawer').classList.remove('is-visible');
+        document.querySelector('.mdl-layout__obfuscator').classList.remove('is-visible');
+      } else {
+        console.log('Error: unable to select files');
+      }
+
     }
 
     setupEvents() {

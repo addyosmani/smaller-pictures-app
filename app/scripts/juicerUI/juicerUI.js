@@ -39,6 +39,8 @@ class juicerUI extends utils {
       this.saveBtn = document.querySelector('#saveBtn');
       this.dstImgElem = document.getElementById("dstimg");
       this.cta = document.querySelector('.cta');
+      this.drawer = document.querySelector('#layout');
+      this.newProject = document.querySelector('.new-project');
       this.compressionContainer = document.querySelector('.compression-container');
       this.layoutControlsHeader = document.querySelector('.layout__controls__header');
       this.compressionStatKB = document.querySelector('.compression-stat__kb');
@@ -170,6 +172,7 @@ class juicerUI extends utils {
 
     showLayoutControlsHeader() {
       this.layoutControlsHeader.classList.add('fade-in');
+      //this.layoutControlsHeader.hidden = false;
     }
 
     readFile(fileUrl) {
@@ -206,12 +209,18 @@ class juicerUI extends utils {
       this.cta.remove();
     }
 
+    runPhotoSelection() {
+      this.readFile(this.picker.files[0]);
+      this.origFileSize = this.picker.files[0].size;
+      this.hideCallToAction();
+      this.enableRangeSelection();
+      // Make sure the drawer is closed
+      this.drawer.MaterialLayout.toggleDrawer();
+    }
+
     setupEvents() {
       this.picker.addEventListener('change', (e) => {
-        this.readFile(this.picker.files[0]);
-        this.origFileSize = this.picker.files[0].size;
-        this.hideCallToAction();
-        this.enableRangeSelection();
+        this.runPhotoSelection();
       });
 
       this.saveBtn.addEventListener('click', (e) => {
@@ -219,6 +228,10 @@ class juicerUI extends utils {
       });
 
       this.cta.addEventListener('click', (e) => {
+        this.picker.click();
+      });
+
+      this.newProject.addEventListener('click', (e) => {
         this.picker.click();
       });
 

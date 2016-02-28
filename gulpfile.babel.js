@@ -117,6 +117,7 @@ gulp.task('scripts', () =>
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
+      './app/scripts/material.min.js',
       './app/scripts/spin.js',
       './app/scripts/modernizr.min.js',
       './app/scripts/Blob.js',

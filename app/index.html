@@ -37,7 +37,7 @@
     <meta name="theme-color" content="#5025AA">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.pink-indigo.min.css">
+    <link rel="stylesheet" href="styles/material.pink-indigo.min.css">
 
     <!-- Your styles -->
     <link rel="stylesheet" href="styles/main.css">
@@ -45,7 +45,7 @@
 <body>
 
 
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div id="layout" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
@@ -57,7 +57,7 @@
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Juicer</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">About</a>
+      <a class="mdl-navigation__link new-project" href="javascript:void(0);">New Project</a>
       <a class="mdl-navigation__link" href="">Why compress?</a>
     </nav>
   </div>
@@ -65,14 +65,7 @@
     <div class="page-content">
       <!-- Your content goes here -->
 
-<!--    -->
-    <div class="cta" hidden>
-      <img src="images/dreamstime_xxl_65780868_small.jpg" height="512" width="512" class="cta__prompt">
-      <span>Select a photo to compress!</span>
-    </div>
-
-
-  <header class="layout__controls__header" style='height: 30px;'>
+  <header class="layout__controls__header">
     <div class='layout__controls'>
       <div id='controls'>
      <div id='range__container' style='width:89%; float: left; display: inline-block;'>
@@ -91,6 +84,11 @@
   <div class="layout__body">
     <main class="layout__content">
       <!-- content/canvas -->
+
+    <div class="cta">
+      <img src="images/dreamstime_xxl_65780868_small.jpg" height="512" width="512" class="cta__prompt">
+      <span>Select a photo to compress!</span>
+    </div>
 
      <!-- content -->
     <div id="spinner"></div>
@@ -145,10 +143,8 @@
   </main>
 </div>
 
-<!-- MDL -->
-    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-
     <!-- build:js(app/) ../../scripts/main.min.js -->
+    <script src="scripts/material.min.js"></script>
     <script src="scripts/spin.js"></script>
     <script src="scripts/modernizr.min.js"></script>
     <script src="scripts/Blob.js"></script>

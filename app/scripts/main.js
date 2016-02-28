@@ -51,7 +51,7 @@
         if (previous === this) {
           previous.dismiss();
         }
-      }.bind(snackbar), 1100);
+      }.bind(snackbar), 1500);
       snackbar.addEventListener('transitionend', function(event) {
         if (event.propertyName === 'opacity' && this.style.opacity === 0) {
           this.parentElement.removeChild(this);

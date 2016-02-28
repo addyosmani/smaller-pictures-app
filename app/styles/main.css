@@ -191,7 +191,7 @@ body {
   padding: 18px 24px;
   bottom: 0px;
   opacity: 0;
-  z-index: 2000;
+  z-index: '2000';
 }
 
 @media (min-width: 640px) {
@@ -299,13 +299,18 @@ body {
   width: 100%;
 }
 
-.width-hundred-percent {
-  width: 100%;
-}
-
-.width-fifty-percent {
+/* Desktop */
+.image-canvas {
   width: 50%;
   height: auto;
 }
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  width: 100%;
+  height: auto;
+}
+
 
 /*$0.classList.toggle('width-fifty-percent')*/

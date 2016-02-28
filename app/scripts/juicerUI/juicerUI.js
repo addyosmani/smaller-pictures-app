@@ -95,7 +95,7 @@ class juicerUI extends utils {
             const url = msg.data.url;
             const imgElem = document.getElementById('img');
 
-            this.dstImgElem.style.width = displayWidth;
+            // this.dstImgElem.style.width = displayWidth;
             this.dstImgElem.setAttribute('src', url);
             this.inprogress = false;
             this.spinner.stop();

@@ -136,8 +136,8 @@ body {
 }
 
 .mdl-card-dark {
-    background-color: #424242;
-    opacity: 0.8;
+    background-color: #161616; /*#424242*/;
+    opacity: 0.9;
 }
 
 .mdl-card-dark .mdl-card__title-text {
@@ -298,3 +298,13 @@ body {
   width: 100%;
 }
 
+.width-hundred-percent {
+  width: 100%;
+}
+
+.width-fifty-percent {
+  width: 50%;
+  height: auto;
+}
+
+/*$0.classList.toggle('width-fifty-percent')*/

@@ -48,6 +48,8 @@ class juicerUI extends utils {
       this.compressionStatPC = document.querySelector('.compression-stat__pc');
       this.compressionStatOldSize = document.querySelector('.compression-stat__os');
 
+      this.dstImgBackground = document.querySelector(".output-background");
+
       // On construction, append our stylesheet
       document.body.appendChild(this.s);
 

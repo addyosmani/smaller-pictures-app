@@ -327,3 +327,18 @@ body {
   }
 }
 
+
+.mdl-button--fab.mdl-button--colored {
+  background-image: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  color: rgb(255, 255, 255);
+  background: rgb(255,64,129);
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+
+.mdl-button--fab.mdl-button--colored:hover {
+    background-color: rgb(255,64,129);
+}

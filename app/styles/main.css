@@ -339,6 +339,10 @@ body {
   background-repeat: initial initial;
 }
 
+.mdl-button--fab.mdl-button--colored:active, .mdl-button--fab.mdl-button--colored:focus:not(:active), .mdl-button--fab.mdl-button--colored:hover {
+  background: rgb(255,64,129);
+}
+
 .mdl-button--fab.mdl-button--colored:hover {
     background-color: rgb(255,64,129);
 }

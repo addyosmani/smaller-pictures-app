@@ -703,3 +703,8 @@ body {
   direction: ltr;
 }
 
+.mdl-button--fab.mdl-button--colored:active, .mdl-button--fab.mdl-button--colored:focus:not(:active), .mdl-button--fab.mdl-button--colored:hover {
+  background: rgb(255,64,129);
+}
+
+

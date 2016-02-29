@@ -24,6 +24,7 @@
 // You can read more about the new JavaScript features here:
 // https://babeljs.io/docs/learn-es2015/
 
+import fs from 'fs';
 import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
@@ -33,6 +34,7 @@ import swPrecache from 'sw-precache';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
+import inline from 'inline-critical';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -63,6 +65,13 @@ gulp.task('images', () =>
     .pipe(gulp.dest('dist/images'))
     .pipe($.size({title: 'images'}))
 );
+
+gulp.task('inline-critical-css', () => {
+  var html = fs.readFileSync('dist/index.html', 'utf8');
+  var critical = fs.readFileSync('app/styles/app-shell.css', 'utf8');
+  var inlined = inline(html, critical, {minify:true});
+  fs.writeFile('dist/index.html', inlined.toString('utf-8'), 'utf8');
+});
 
 // Copy all files at the root level (app)
 gulp.task('copy', () =>
@@ -229,7 +238,7 @@ gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
     ['lint', 'html', 'scripts', 'ptt', 'images', 'copy'],
-    'generate-service-worker',
+    'generate-service-worker', 'inline-critical-css',
     cb
   )
 );

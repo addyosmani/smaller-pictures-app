@@ -39,5 +39,9 @@
   },
   "eslintConfig": {
     "extends": "google"
+  },
+  "dependencies": {
+    "critical": "^0.7.1",
+    "inline-critical": "^1.0.0"
   }
 }

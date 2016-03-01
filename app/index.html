@@ -37,10 +37,11 @@
     <meta name="theme-color" content="#000000">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="styles/material.pink-indigo.min.css">
 
-    <!-- Your styles -->
+    <!-- build:css(app/) ../../styles/bundle.min.css -->
+    <link rel="stylesheet" href="styles/material.pink-indigo.min.css">
     <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
   </head>
 <body>
 
@@ -127,7 +128,7 @@
 
     <!-- FAB: pick -->
     <div id="fabFileSelect" class="fab">
-      <label id="labelForPicker" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" for="filepicker" tabindex="1"><i class="material-icons">photo</i></label>
+      <label id="labelForPicker" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" for="filepicker" tabindex="1" style="background: rgb(255,64,129);"><i class="material-icons">photo</i></label>
       <input type="file" id="filepicker" style="visibility: hidden; width: 0px;"/>
     </div>
 

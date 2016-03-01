@@ -233,6 +233,7 @@ class juicerUI extends utils {
 
       this.saveBtn.addEventListener('click', (e) => {
         this.exportCompressedImage(this.dstImgElem);
+        // TODO: Figure out why this fails occasionally in Chromium 51
       });
 
       this.cta.addEventListener('click', (e) => {
@@ -249,7 +250,6 @@ class juicerUI extends utils {
         }
       });
 
-      /*change all*/
       this.r.addEventListener('change', (e) => {
         this.orchestrateEncode(this.r);
       });

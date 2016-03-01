@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
+    <meta name="description" content="A Progressive Web App for compressing images into smaller files.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juicer</title>
 
@@ -15,6 +15,7 @@
     <meta name="application-name" content="Juicer">
     <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
 
+    <!-- All the other icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/images/touch/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/images/touch/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/images/touch/apple-touch-icon-72x72.png">
@@ -24,18 +25,25 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/images/touch/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/images/touch/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/touch/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="/images/touch/splashscreen-384x384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/images/touch/splashscreen-512x512.png">
     <link rel="icon" type="image/png" href="/images/touch/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/images/touch/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/touch/splashscreen-512x512.png" sizes="512x512">
+    <link rel="icon" type="image/png" href="/images/touch/splashscreen-384x384.png" sizes="384x384">
     <link rel="icon" type="image/png" href="/images/touch/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="/images/touch/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/images/touch/manifest.json">
     <link rel="mask-icon" href="/images/touch/safari-pinned-tab.svg" color="#5A1583">
     <link rel="shortcut icon" href="/images/touch/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="/images/touch/mstile-144x144.png">
     <meta name="msapplication-config" content="/images/touch/browserconfig.xml">
+
+    <!-- Theme color -->
     <meta name="theme-color" content="#000000">
 
+    <!-- Icons for MDL -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- build:css(app/) ../../styles/bundle.min.css -->
@@ -59,25 +67,24 @@
     <span class="mdl-layout-title">Juicer</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link new-project" href="javascript:void(0);">New Project</a>
-      <a class="mdl-navigation__link" href="">Why compress?</a>
+      <a class="mdl-navigation__link" href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization">Why optimize?</a>
     </nav>
   </div>
   <main class="mdl-layout__content">
     <div class="page-content">
       <!-- Your content goes here -->
+          <header class="layout__controls__header">
+            <div class='layout__controls'>
+              <div id='controls'>
+             <div id='range__container' style='width:89%; float: left; display: inline-block;'>
+              <input type='range' step='1' min='1' max='100' class='slider mdl-slider mdl-js-slider' value='70'/>
+             </div>
 
-  <header class="layout__controls__header">
-    <div class='layout__controls'>
-      <div id='controls'>
-     <div id='range__container' style='width:89%; float: left; display: inline-block;'>
-      <input type='range' step='1' min='1' max='100' class='slider mdl-slider mdl-js-slider' value='70'/>
-     </div>
-
-   <div class="mdl-textfield mdl-js-textfield">
-    <input id="quality" value="70" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?">
-    <label class="mdl-textfield__label" for="sample2">Number...</label>
-    <span class="mdl-textfield__error">Input is not a number!</span>
-  </div>
+           <div class="mdl-textfield mdl-js-textfield">
+            <input id="quality" value="70" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?">
+            <label class="mdl-textfield__label" for="sample2">Number...</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+          </div>
         </div>
     </div>
   </header>
@@ -93,7 +100,7 @@
 
      <!-- content -->
     <div id="spinner"></div>
-    <div style="display: inline-block;" class="output-image">
+    <div style="display: inline-block; margin-top: 56px;" class="output-image">
         <img id="dstimg" download="export.jpg" class="image-canvas"/>
     </div>
     <!-- end content -->

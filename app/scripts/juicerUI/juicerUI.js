@@ -70,6 +70,16 @@ class juicerUI extends utils {
       });
     }
 
+    startSpinner() {
+      // Avoid scheduling encode if in progress
+      let target = document.getElementById('spinner');
+      this.spinner = new Spinner(this.spinnerOpts).spin(target);
+    }
+
+    stopSpinner() {
+      this.spinner.stop();
+    }
+
     encode(quality = 75) {
 
       const displayWidth = '100%'; //calc(100% / 1.5)'; //100%';
@@ -87,8 +97,9 @@ class juicerUI extends utils {
 
       // Avoid scheduling encode if in progress
       if (!this.inprogress) {
-        const target = document.getElementById('spinner');
-        this.spinner = new Spinner(this.spinnerOpts).spin(target);
+        //const target = document.getElementById('spinner');
+        // this.spinner = new Spinner(this.spinnerOpts).spin(target);
+        this.startSpinner();
         this.worker.postMessage(encoderOptions);
         this.inprogress = true;
       }
@@ -103,7 +114,7 @@ class juicerUI extends utils {
             // this.dstImgElem.style.width = displayWidth;
             this.dstImgElem.setAttribute('src', url);
             this.inprogress = false;
-            this.spinner.stop();
+            this.stopSpinner();
 
             // Re-enable range selection
             this.enableRangeSelection();
@@ -164,6 +175,7 @@ class juicerUI extends utils {
 
       this.picker.parentElement.hidden = true;
       this.saveBtn.parentElement.hidden = false;
+      this.stopSpinner();
     }
 
     disableRangeSelection() {
@@ -216,6 +228,9 @@ class juicerUI extends utils {
 
     runPhotoSelection() {
       if (this.picker.files[0]) {
+        // Start spinner early to provide visual feedback
+        this.startSpinner();
+        // Attempt file reads
         this.readFile(this.picker.files[0]);
         this.origFileSize = this.picker.files[0].size;
         this.hideCallToAction();
@@ -225,6 +240,7 @@ class juicerUI extends utils {
         document.querySelector('.mdl-layout__obfuscator').classList.remove('is-visible');
       } else {
         console.log('Error: unable to select files');
+        this.stopSpinner();
       }
 
     }

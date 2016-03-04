@@ -192,7 +192,7 @@ body {
   padding: 18px 24px;
   bottom: 0px;
   opacity: 0;
-  z-index: '2000';
+  z-index: 2000;
 }
 
 @media (min-width: 640px) {
@@ -216,6 +216,7 @@ body {
     border-radius: 2px;
     margin: 24px;
     bottom: -100px;
+    z-index: 2000;
   }
 }
 
@@ -236,6 +237,7 @@ body {
     */
     left: 0px;
     right: 0px;
+    z-index: 2000;
   }
 }
 .paper-snackbar .action {
@@ -345,4 +347,14 @@ body {
 
 .mdl-button--fab.mdl-button--colored:hover {
     background-color: rgb(255,64,129);
+}
+
+
+
+/* Spinner replacement */
+.mdl-spinner {
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  left: 50%;
 }

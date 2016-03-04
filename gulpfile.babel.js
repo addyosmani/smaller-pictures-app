@@ -46,7 +46,6 @@ gulp.task('lint', () =>
     //'app/scripts/index.js',
     '!app/scripts/encoder.js',
     '!app/scripts/modernizer.min.js',
-    '!app/scripts/spin.js',
     '!app/scripts/FileSaver.min.js',
     '!app/scripts/Blob.js',
     '!app/scripts/canvas-toBlob.js'])
@@ -128,7 +127,6 @@ gulp.task('scripts', () =>
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
       './app/scripts/material.min.js',
-      './app/scripts/spin.js',
       './app/scripts/modernizr.min.js',
       './app/scripts/Blob.js',
       './app/scripts/canvas-toBlob.js',

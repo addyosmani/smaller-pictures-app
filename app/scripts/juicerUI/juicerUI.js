@@ -10,25 +10,6 @@ class juicerUI extends utils {
       this.origImageData = null;
       this.origFileSize = 0;
 
-      this.spinnerOpts = {
-        lines: 7, // The number of lines to draw
-        length: 80, // The length of each line
-        width: 40, // The line thickness
-        radius: 32, // The radius of the inner circle
-        corners: 1.0, // Corner roundness (0..1)
-        rotate: 19, // The rotation offset
-        direction: 1, // 1: clockwise, -1: counterclockwise
-        color: '#ee66aa', // #rgb or #rrggbb or array of colors
-        speed: 1.2, // Rounds per second
-        trail: 60, // Afterglow percentage
-        shadow: false, // Whether to render a shadow
-        hwaccel: false, // Whether to use hardware acceleration
-        className: 'spinner', // The CSS class to assign to the spinner
-        zIndex: 2e9, // The z-index (defaults to 2000000000)
-        top: '50%', // Top position relative to parent in px
-        left: '50%' // Left position relative to parent in px
-      };
-
       // Elements
       this.l = document.querySelector('#quality');
       this.s = document.createElement('style');
@@ -72,12 +53,12 @@ class juicerUI extends utils {
 
     startSpinner() {
       // Avoid scheduling encode if in progress
-      let target = document.getElementById('spinner');
-      this.spinner = new Spinner(this.spinnerOpts).spin(target);
+      this.spinner = document.getElementById('spinner');
+      this.spinner.classList.add('is-active');
     }
 
     stopSpinner() {
-      this.spinner.stop();
+      this.spinner.classList.remove('is-active');
     }
 
     encode(quality = 75) {
@@ -97,8 +78,6 @@ class juicerUI extends utils {
 
       // Avoid scheduling encode if in progress
       if (!this.inprogress) {
-        //const target = document.getElementById('spinner');
-        // this.spinner = new Spinner(this.spinnerOpts).spin(target);
         this.startSpinner();
         this.worker.postMessage(encoderOptions);
         this.inprogress = true;

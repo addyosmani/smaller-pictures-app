@@ -44,14 +44,15 @@
 
 
 <div id="layout" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
+  <!-- https://github.com/addyosmani/smaller-pictures-app/issues/6 -->
+  <nav class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
       <span class="mdl-layout-title">Smaller Pictures</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
     </div>
-  </header>
+  </nav>
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Smaller Pictures</span>
     <nav class="mdl-navigation">
@@ -79,11 +80,11 @@
   </header>
 
   <div class="layout__body">
-    <main class="layout__content">
+    <div class="layout__content">
       <!-- content/canvas -->
 
-    <div class="cta">
-      <img src="images/dreamstime_xxl_65780868_small.jpg" height="512" width="512" class="cta__prompt">
+    <div class="cta" aria-label="Choose a photo">
+      <img alt="Select a photo to compress" src="images/dreamstime_xxl_65780868_small.jpg" height="512" width="512" class="cta__prompt">
       <span>Select a photo to compress!</span>
     </div>
 
@@ -117,20 +118,20 @@
         </div>
     </div>
 
-    </main>
+    </div>
     <nav class="layout__nav layout__columns"></nav>
     <aside class="layout__aside layout__columns"></aside>
   </div>
 
     <!-- FAB: pick -->
     <div id="fabFileSelect" class="fab">
-      <label id="labelForPicker" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" for="filepicker" tabindex="1" style="background: rgb(255,64,129);"><i class="material-icons">photo</i></label>
-      <input type="file" id="filepicker" style="visibility: hidden; width: 0px;"/>
+      <label id="labelForPicker" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" for="filepicker" tabindex="1" style="background: rgb(255,64,129);" aria-label="Choose a photo"><i class="material-icons">photo</i></label>
+      <input type="file" id="filepicker" style="display:none; width: 0px;"/>
     </div>
 
     <!-- FAB: save -->
     <div id="fabFileSave" class="fab" hidden>
-   <button id="saveBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="background: rgb(255,64,129); z-index: 100">
+   <button id="saveBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="background: rgb(255,64,129); z-index: 100" aria-label="Save photo">
       <i class="material-icons">save</i>
     </button>
     </div>

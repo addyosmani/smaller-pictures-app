@@ -10,6 +10,7 @@ class juicerUI extends utils {
       this.origImageData = null;
       this.origFileSize = 0;
 
+      this.ESCAPE_KEY = 27;
       // Elements
       this.l = document.querySelector('#quality');
       this.s = document.createElement('style');
@@ -245,6 +246,12 @@ class juicerUI extends utils {
       window.addEventListener('keypress', (e) => {
         if (e.keyCode === 13 && e.target === this.labelForPicker) {
           this.picker.click();
+        }
+
+        // Support cancelling out of offscreen drawer menu
+        // https://github.com/addyosmani/smaller-pictures-app/issues/3
+        if (e.keyCode === this.ESCAPE_KEY && (e.target === this.drawerMenuButton)) {
+          this.drawer.MaterialLayout.toggleDrawer(true);
         }
       });
 

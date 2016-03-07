@@ -358,3 +358,12 @@ body {
   top: 50%;
   left: 50%;
 }
+/* Hide drawer offscreen from keyboard focus */
+/* https://github.com/addyosmani/smaller-pictures-app/issues/1 */
+.mdl-layout__drawer {
+  display: none;
+}
+
+.mdl-layout__drawer.is-visible {
+  display: block;
+}

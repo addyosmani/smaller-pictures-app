@@ -10,7 +10,11 @@ class juicerUI extends utils {
       this.origImageData = null;
       this.origFileSize = 0;
 
+      // Keyboard shortcuts
+      this.ENTER_KEY = 13;
       this.ESCAPE_KEY = 27;
+      this.A11Y_OPEN_MENU = 'Open Menu';
+
       // Elements
       this.l = document.querySelector('#quality');
       this.s = document.createElement('style');
@@ -29,13 +33,19 @@ class juicerUI extends utils {
       this.compressionStatKB = document.querySelector('.compression-stat__kb');
       this.compressionStatPC = document.querySelector('.compression-stat__pc');
       this.compressionStatOldSize = document.querySelector('.compression-stat__os');
-
       this.dstImgBackground = document.querySelector(".output-background");
 
       // On construction, append our stylesheet
       document.body.appendChild(this.s);
 
       window.addEventListener('load', (e) => {
+
+        // Post MDL initialisation
+        this.drawerMenuButton = this.drawer.querySelector('.mdl-layout__drawer-button');
+
+        // Ensure MDL hamburger has aria-label set
+        // https://github.com/addyosmani/smaller-pictures-app/issues/4
+        this.drawerMenuButton.setAttribute('aria-label', this.A11Y_OPEN_MENU);
 
         // Init default encoding quality
         this.jpegQuality = jpegQuality;
@@ -243,8 +253,8 @@ class juicerUI extends utils {
         this.picker.click();
       });
 
-      window.addEventListener('keypress', (e) => {
-        if (e.keyCode === 13 && e.target === this.labelForPicker) {
+      window.addEventListener('keyup', (e) => {
+        if (e.keyCode === this.ENTER_KEY && e.target === this.labelForPicker) {
           this.picker.click();
         }
 

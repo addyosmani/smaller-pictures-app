@@ -360,10 +360,12 @@ body {
 }
 /* Hide drawer offscreen from keyboard focus */
 /* https://github.com/addyosmani/smaller-pictures-app/issues/1 */
-.mdl-layout__drawer {
+
+/* We hide the navigation block so it can't be accidentally tabbed into */
+.mdl-navigation {
   display: none;
 }
 
-.mdl-layout__drawer.is-visible {
+.mdl-layout__drawer.is-visible .mdl-navigation {
   display: block;
 }

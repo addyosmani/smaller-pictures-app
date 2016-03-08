@@ -45,6 +45,7 @@ class juicerUI extends utils {
         // Post MDL initialisation
         this.drawer = this.layout.querySelector('.mdl-layout__drawer');
         this.drawerMenuButton = this.layout.querySelector('.mdl-layout__drawer-button');
+        this.drawerNavigationItems = this.drawer.querySelectorAll('a');
 
         // Ensure MDL hamburger has aria-label set
         // https://github.com/addyosmani/smaller-pictures-app/issues/4
@@ -245,7 +246,7 @@ class juicerUI extends utils {
         // if tab or shift-tab pressed
         if (e.keyCode === this.TAB_KEY) {
           // Get list of focusable items
-          let focusableItems = this.drawer.querySelectorAll('a');
+          let focusableItems = this.drawerNavigationItems;
           // Get the number of focusable items
           let numberOfFocusableItems = focusableItems.length;
           // Get currently focused item
@@ -302,7 +303,6 @@ class juicerUI extends utils {
       });
 
       window.addEventListener('keyup', (e) => {
-
         if (e.keyCode === this.ENTER_KEY && e.target === this.labelForPicker) {
           this.picker.click();
         }

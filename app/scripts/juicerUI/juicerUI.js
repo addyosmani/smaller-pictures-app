@@ -10,6 +10,12 @@ class juicerUI extends utils {
       this.origImageData = null;
       this.origFileSize = 0;
 
+      // Keyboard shortcuts
+      this.ENTER_KEY = 13;
+      this.ESCAPE_KEY = 27;
+      this.TAB_KEY = 9;
+      this.A11Y_OPEN_MENU = 'Open Menu';
+
       // Elements
       this.l = document.querySelector('#quality');
       this.s = document.createElement('style');
@@ -20,7 +26,8 @@ class juicerUI extends utils {
       this.saveBtn = document.querySelector('#saveBtn');
       this.dstImgElem = document.getElementById("dstimg");
       this.cta = document.querySelector('.cta');
-      this.drawer = document.querySelector('#layout');
+      this.layout = document.querySelector('#layout');
+
       this.fabFileSelect = document.querySelector('#fabFileSelect');
       this.newProject = document.querySelector('.new-project');
       this.compressionContainer = document.querySelector('.compression-container');
@@ -28,13 +35,21 @@ class juicerUI extends utils {
       this.compressionStatKB = document.querySelector('.compression-stat__kb');
       this.compressionStatPC = document.querySelector('.compression-stat__pc');
       this.compressionStatOldSize = document.querySelector('.compression-stat__os');
-
       this.dstImgBackground = document.querySelector(".output-background");
 
       // On construction, append our stylesheet
       document.body.appendChild(this.s);
 
       window.addEventListener('load', (e) => {
+
+        // Post MDL initialisation
+        this.drawer = this.layout.querySelector('.mdl-layout__drawer');
+        this.drawerMenuButton = this.layout.querySelector('.mdl-layout__drawer-button');
+        this.drawerNavigationItems = this.drawer.querySelectorAll('a');
+
+        // Ensure MDL hamburger has aria-label set
+        // https://github.com/addyosmani/smaller-pictures-app/issues/4
+        this.drawerMenuButton.setAttribute('aria-label', this.A11Y_OPEN_MENU);
 
         // Init default encoding quality
         this.jpegQuality = jpegQuality;
@@ -224,6 +239,47 @@ class juicerUI extends utils {
 
     }
 
+    handleDrawerKeyboardTraps(e) {
+      // https://github.com/addyosmani/smaller-pictures-app/issues/7
+      // Throttle check to only occur when the drawer is visible
+      if (this.drawer.classList.contains('is-visible')) {
+        // if tab or shift-tab pressed
+        if (e.keyCode === this.TAB_KEY) {
+          // Get list of focusable items
+          let focusableItems = this.drawerNavigationItems;
+          // Get the number of focusable items
+          let numberOfFocusableItems = focusableItems.length;
+          // Get currently focused item
+          let focusedItem = document.activeElement;
+          let focusedItemIndex =  0;
+
+          if (numberOfFocusableItems > 0) {
+            // Get the index of the currently focused item
+            for (let i = 0; i < numberOfFocusableItems; i++) {
+              if (focusableItems[i] === focusedItem) {
+                focusedItemIndex = i;
+              }
+            }
+
+            if (e.shiftKey) {
+              // Back tab
+              // If focused on first item and user presses back-tab, go to
+              // the last focusable item
+              if (focusedItemIndex === 0) {
+                focusableItems[numberOfFocusableItems - 1].focus();
+                e.preventDefault();
+              }
+            } else {
+              if (focusedItemIndex === numberOfFocusableItems - 1) {
+                  focusableItems[0].focus();
+                  e.preventDefault();
+              }
+            }
+          }
+        }
+      }
+    }
+
     setupEvents() {
       this.picker.addEventListener('change', (e) => {
         this.runPhotoSelection();
@@ -242,9 +298,19 @@ class juicerUI extends utils {
         this.picker.click();
       });
 
-      window.addEventListener('keypress', (e) => {
-        if (e.keyCode === 13 && e.target === this.labelForPicker) {
+      window.addEventListener('keydown', (e) => {
+        this.handleDrawerKeyboardTraps(e);
+      });
+
+      window.addEventListener('keyup', (e) => {
+        if (e.keyCode === this.ENTER_KEY && e.target === this.labelForPicker) {
           this.picker.click();
+        }
+
+        // Support cancelling out of offscreen drawer menu
+        // https://github.com/addyosmani/smaller-pictures-app/issues/3
+        if (e.keyCode === this.ESCAPE_KEY && (e.target === this.drawerMenuButton)) {
+          this.layout.MaterialLayout.toggleDrawer(true);
         }
       });
 

@@ -3,7 +3,7 @@
 (function() {
   'use strict';
 
-  var APP_VERSION = 1.0236;
+  var APP_VERSION = 1.0237;
   console.log('Running Smaller Pics version ' + APP_VERSION);
 
   // Check to make sure service workers are supported in the current browser,

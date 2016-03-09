@@ -27,6 +27,7 @@ class juicerUI extends utils {
       this.dstImgElem = document.getElementById("dstimg");
       this.cta = document.querySelector('.cta');
       this.layout = document.querySelector('#layout');
+      this.spinner = document.getElementById('spinner');
 
       this.fabFileSelect = document.querySelector('#fabFileSelect');
       this.newProject = document.querySelector('.new-project');
@@ -68,7 +69,7 @@ class juicerUI extends utils {
 
     startSpinner() {
       // Avoid scheduling encode if in progress
-      this.spinner = document.getElementById('spinner');
+
       this.spinner.classList.add('is-active');
     }
 

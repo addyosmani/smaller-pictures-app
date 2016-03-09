@@ -382,4 +382,20 @@ body {
   display: block;
 }
 
+.noscript-overlay {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    height: 600px;
+    background: white;
+    position: relative;
+    top: -550px;
+    padding: 20px;
+}
+
+.noscript-overlay p {
+  font-weight: bold;
+}
+
+
 

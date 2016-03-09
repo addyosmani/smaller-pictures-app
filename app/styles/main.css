@@ -29,6 +29,8 @@ body {
     opacity: 0;
     top: 80%;
     right: 0;
+    /* a11y: Hide by default to avoid being visible to screen reader */
+    visibility: hidden;
 }
 
 .layout__body {
@@ -263,16 +265,20 @@ body {
   z-index: 3;
   position: absolute;
   background: #303030;
+  visibility: hidden;
 }
 
 .fade-in {
   opacity: 1;
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out; }
+  -webkit-transition: opacity .25s ease-in-out;
+  visibility: visible;
+}
 
 .layout__controls__header.fade-in {
   opacity: 1;
+  visibility: visible;
   height: 30px;
   padding: 16px 10px 10px 10px;
 }
@@ -357,6 +363,12 @@ body {
   z-index: 12;
   top: 50%;
   left: 50%;
+  /* a11y: Spinner should not be visible by default */
+  visibility: hidden;
+}
+
+.mdl-spinner.is-active {
+  visibility: visible;
 }
 /* Hide drawer offscreen from keyboard focus */
 /* https://github.com/addyosmani/smaller-pictures-app/issues/1 */
@@ -369,3 +381,5 @@ body {
 .mdl-layout__drawer.is-visible .mdl-navigation {
   display: block;
 }
+
+

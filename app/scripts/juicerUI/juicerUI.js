@@ -14,7 +14,7 @@ class juicerUI extends utils {
       this.ENTER_KEY = 13;
       this.ESCAPE_KEY = 27;
       this.TAB_KEY = 9;
-      this.A11Y_OPEN_MENU = 'Open Menu';
+      this.A11Y_OPEN_MENU = 'Open Menu.';
 
       // Elements
       this.l = document.querySelector('#quality');
@@ -24,7 +24,7 @@ class juicerUI extends utils {
       this.picker = document.querySelector('#filepicker');
       this.labelForPicker = document.querySelector('#labelForPicker');
       this.saveBtn = document.querySelector('#saveBtn');
-      this.dstImgElem = document.getElementById("dstimg");
+      this.dstImgElem = document.getElementById('dstimg');
       this.cta = document.querySelector('.cta');
       this.layout = document.querySelector('#layout');
       this.spinner = document.getElementById('spinner');
@@ -36,7 +36,7 @@ class juicerUI extends utils {
       this.compressionStatKB = document.querySelector('.compression-stat__kb');
       this.compressionStatPC = document.querySelector('.compression-stat__pc');
       this.compressionStatOldSize = document.querySelector('.compression-stat__os');
-      this.dstImgBackground = document.querySelector(".output-background");
+      this.dstImgBackground = document.querySelector('.output-background');
 
       // On construction, append our stylesheet
       document.body.appendChild(this.s);
@@ -69,7 +69,6 @@ class juicerUI extends utils {
 
     startSpinner() {
       // Avoid scheduling encode if in progress
-
       this.spinner.classList.add('is-active');
     }
 
@@ -288,7 +287,6 @@ class juicerUI extends utils {
 
       this.saveBtn.addEventListener('click', (e) => {
         this.exportCompressedImage(this.dstImgElem);
-        // TODO: Figure out why this fails occasionally in Chromium 51
       });
 
       this.cta.addEventListener('click', (e) => {

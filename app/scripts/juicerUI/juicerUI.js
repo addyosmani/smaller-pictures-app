@@ -10,6 +10,9 @@ class juicerUI extends utils {
       this.origImageData = null;
       this.origFileSize = 0;
 
+      // Image Zoomer
+      this.zoomer = new ImageZoomer();
+
       // Keyboard shortcuts
       this.ENTER_KEY = 13;
       this.ESCAPE_KEY = 27;
@@ -109,6 +112,10 @@ class juicerUI extends utils {
             this.dstImgElem.setAttribute('src', url);
             this.inprogress = false;
             this.stopSpinner();
+
+            // Switch on the zoomer, capture the new image.
+            this.zoomer.enabled = true;
+            this.zoomer.onResize();
 
             // Re-enable range selection
             this.enableRangeSelection();

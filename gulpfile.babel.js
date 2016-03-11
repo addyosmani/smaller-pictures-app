@@ -132,6 +132,7 @@ gulp.task('scripts', () =>
       './app/scripts/canvas-toBlob.js',
       './app/scripts/FileSaver.min.js',
       './app/scripts/utils/utils.js',
+      './app/scripts/zoomer.js',
       './app/scripts/juicerUI/juicerUI.js',
       './app/scripts/app.js',
       './app/scripts/main.js'
@@ -139,7 +140,7 @@ gulp.task('scripts', () =>
     ])
       .pipe($.newer('.tmp/scripts'))
       //.pipe($.sourcemaps.init())
-      .pipe($.if(['utils.js','juicerUI.js', 'app.js'], $.babel()))
+      .pipe($.if(['utils.js','zoomer.js', 'juicerUI.js', 'app.js'], $.babel()))
       //.pipe($.babel())
       //.pipe($.sourcemaps.write())
       .pipe(gulp.dest('.tmp/scripts'))

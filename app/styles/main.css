@@ -335,6 +335,14 @@ body {
   }
 }
 
+/* Edge hacks, because....no object-fit atm*/
+_:-ms-lang(x), .output-image .image-canvas {
+  width: auto;
+  min-height: 0px;
+  min-width: 0px;
+  height: reset;
+}
+
 @media screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
   object-fit: cover;
   width: 100%;
@@ -350,6 +358,14 @@ body {
     transform: translateY(13%);
     -webkit-transform: translateY(13%);
     margin: 0 auto;
+  }
+
+  /* Edge hacks, because....no object-fit atm*/
+  _:-ms-lang(x), .output-image .image-canvas {
+    width: auto;
+    min-height: 0px;
+    min-width: 0px;
+    height: reset;
   }
 }
 

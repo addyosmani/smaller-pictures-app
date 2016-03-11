@@ -15,10 +15,12 @@
  * limitations under the License.
  */
 
+/* global document, window, requestAnimationFrame */
+
 'use strict';
 
 class ImageZoomer {
-  constructor () {
+  constructor() {
     this.element = document.querySelector('.zoomer');
     this.target = document.querySelector('.image-canvas');
     this.canvas = document.querySelector('.zoomer__canvas');
@@ -42,18 +44,17 @@ class ImageZoomer {
 
     this.initCanvas();
     this.addEventListeners();
-
   }
 
-  set enabled (enabled_) {
+  set enabled(enabled_) {
     this.enabled_ = enabled_;
   }
 
-  get enabled () {
+  get enabled() {
     return this.enabled_;
   }
 
-  initCanvas () {
+  initCanvas() {
     const width = 128;
     const height = 128;
     const dPR = window.devicePixelRatio || 1;
@@ -67,8 +68,7 @@ class ImageZoomer {
     this.ctx.scale(dPR, dPR);
   }
 
-  onResize () {
-
+  onResize() {
     const bcr = this.target.getBoundingClientRect();
 
     this.targetBCR = {
@@ -99,13 +99,14 @@ class ImageZoomer {
     this.targetBCR.top += (bcr.height - this.targetBCR.height) * 0.5;
   }
 
-  onStart (evt) {
-
-    if (!this.enabled)
+  onStart(evt) {
+    if (!this.enabled) {
       return;
+    }
 
-    if (evt.target !== this.target)
+    if (evt.target !== this.target) {
       return;
+    }
 
     this.x = evt.pageX || evt.touches[0].pageX;
     this.y = evt.pageY || evt.touches[0].pageY;
@@ -117,22 +118,21 @@ class ImageZoomer {
     requestAnimationFrame(this.update);
   }
 
-  onMove (evt) {
-    if (!this.trackingTouch)
+  onMove(evt) {
+    if (!this.trackingTouch) {
       return;
+    }
 
     this.x = evt.pageX || evt.touches[0].pageX;
     this.y = evt.pageY || evt.touches[0].pageY;
-
   }
 
-  onEnd () {
+  onEnd() {
     this.trackingTouch = false;
     this.targetZoomed = 0;
   }
 
-  update () {
-
+  update() {
     const TAU = Math.PI * 2;
     const MAX_RADIUS = 46;
     const radius = this.zoomed * MAX_RADIUS;
@@ -182,7 +182,7 @@ class ImageZoomer {
     }
   }
 
-  addEventListeners () {
+  addEventListeners() {
     document.addEventListener('touchstart', this.onStart);
     document.addEventListener('touchmove', this.onMove);
     document.addEventListener('touchend', this.onEnd);
@@ -193,7 +193,7 @@ class ImageZoomer {
     window.addEventListener('resize', this.onResize);
   }
 
-  removeEventListeners () {
+  removeEventListeners() {
     document.removeEventListener('touchstart', this.onStart);
     document.removeEventListener('touchmove', this.onMove);
     document.removeEventListener('touchend', this.onEnd);

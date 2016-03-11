@@ -38,12 +38,19 @@ class ImageZoomer {
     this.y = 0;
     this.trackingTouch = false;
     this.scheduledUpdate = false;
+    this.enabled_ = false;
 
     this.initCanvas();
     this.addEventListeners();
-    this.onResize();
 
-    requestAnimationFrame(this.update);
+  }
+
+  set enabled (enabled_) {
+    this.enabled_ = enabled_;
+  }
+
+  get enabled () {
+    return this.enabled_;
   }
 
   initCanvas () {
@@ -61,22 +68,41 @@ class ImageZoomer {
   }
 
   onResize () {
-    // this.targetBCR = this.target.getBoundingClientRect();
-    // this.targetBCR.left = (window.innerWidth - this.target.offsetWidth) / 2;
 
-    let lols = this.target.getBoundingClientRect();
+    const bcr = this.target.getBoundingClientRect();
+
     this.targetBCR = {
-      left:  (window.innerWidth - this.target.offsetWidth) / 2,
-      right: lols.right,
-      top: lols.top,
-      bottom: lols.bottom,
-      width: lols.width,
-      height: lols.height
+      left: bcr.left,
+      right: bcr.right,
+      top: bcr.top,
+      bottom: bcr.bottom,
+      width: bcr.width,
+      height: bcr.height
     };
-    console.log(this.targetBCR, window.innerWidth, this.target.naturalWidth);
+
+    // Update the BCR based on the image object fit.
+    const fit = window.getComputedStyle(this.target).objectFit;
+    const widthRatio = (this.targetBCR.width / this.target.naturalWidth);
+    const heightRatio = (this.targetBCR.height / this.target.naturalHeight);
+    let ratio = 1;
+
+    if (fit === 'contain') {
+      ratio = Math.min(widthRatio, heightRatio);
+    } else if (fit === 'cover') {
+      ratio = Math.max(widthRatio, heightRatio);
+    }
+
+    this.targetBCR.width = this.target.naturalWidth * ratio;
+    this.targetBCR.height = this.target.naturalHeight * ratio;
+
+    this.targetBCR.left += (bcr.width - this.targetBCR.width) * 0.5;
+    this.targetBCR.top += (bcr.height - this.targetBCR.height) * 0.5;
   }
 
   onStart (evt) {
+
+    if (!this.enabled)
+      return;
 
     if (evt.target !== this.target)
       return;
@@ -116,9 +142,6 @@ class ImageZoomer {
     const imageScale = 3;
     const scaledTargetWidth = this.targetBCR.width * imageScale;
     const scaledTargetHeight = this.targetBCR.height * imageScale;
-    const glassyGlow = this.ctx.createRadialGradient(64, 64, 64, 64, 64, 0);
-    glassyGlow.addColorStop(0, 'rgba(255,255,255,0.8)');
-    glassyGlow.addColorStop(0.5, 'rgba(255,255,255,0)');
 
     // Shadow.
     this.ctx.shadowColor = 'rgba(0,0,0,0.4)';
@@ -144,13 +167,6 @@ class ImageZoomer {
         scaledTargetWidth,
         scaledTargetHeight);
     this.ctx.restore();
-
-    // Glassy glow.
-    this.ctx.fillStyle = glassyGlow;
-    this.ctx.beginPath();
-    this.ctx.arc(64, 110 - radius, Math.max(0, radius - 2), 0, TAU);
-    this.ctx.closePath();
-    this.ctx.fill();
 
     // Position the parent element.
     this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
@@ -189,4 +205,4 @@ class ImageZoomer {
   }
 }
 
-window.addEventListener('load', () => new ImageZoomer());
+window.ImageZoomer = ImageZoomer;

@@ -560,6 +560,11 @@ header #quality {
   width: 100%;
 }
 
+.output-image {
+  content: '';
+  width: 100%;
+}
+
 .output-image .image-canvas {
   width: 100%;
   height: 610px;

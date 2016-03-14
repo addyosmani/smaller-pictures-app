@@ -50,7 +50,6 @@ body {
 }
 
 
-
 .layout__content {
       background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGQ9Ik0xIDJWMGgxdjFIMHYxeiIgZmlsbC1vcGFjaXR5PSIuMDUiLz48L3N2Zz4=");
  background-size: 16px 16px;
@@ -402,7 +401,7 @@ _:-ms-lang(x), .output-image .image-canvas {
 /* https://github.com/addyosmani/smaller-pictures-app/issues/1 */
 
 /* We hide the navigation block so it can't be accidentally tabbed into */
-.mdl-navigation {
+.mdl-layout__drawer .mdl-navigation {
   display: none;
 }
 
@@ -410,21 +409,21 @@ _:-ms-lang(x), .output-image .image-canvas {
   display: block;
 }
 
+/* JavaScript is disabled */
 .noscript-overlay {
-    display: block;
-    margin: 0 auto;
-    width: 90%;
-    height: 600px;
-    background: white;
-    position: relative;
-    top: -550px;
-    padding: 20px;
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  height: 600px;
+  background: white;
+  position: relative;
+  top: -550px;
+  padding: 20px;
 }
 
 .noscript-overlay p {
   font-weight: bold;
 }
-
 
 /* Zoomer */
 .zoomer {
@@ -440,4 +439,11 @@ _:-ms-lang(x), .output-image .image-canvas {
   position: absolute;
   left: -64px;
   top: -134px;
+}
+
+@media screen and (max-width: 1024px) {
+  /* Hide the extra New Project link on smaller viewports */
+  .mdl-layout__header-row .mdl-navigation__link.new-project-desktop {
+  	display: none;
+  }
 }

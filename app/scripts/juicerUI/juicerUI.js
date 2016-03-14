@@ -33,7 +33,7 @@ class juicerUI extends utils {
       this.spinner = document.getElementById('spinner');
 
       this.fabFileSelect = document.querySelector('#fabFileSelect');
-      this.newProject = document.querySelector('.new-project');
+      this.newProject = [].slice.call(document.querySelectorAll('.new-project, .new-project-desktop'));
       this.compressionContainer = document.querySelector('.compression-container');
       this.layoutControlsHeader = document.querySelector('.layout__controls__header');
       this.compressionStatKB = document.querySelector('.compression-stat__kb');
@@ -193,6 +193,10 @@ class juicerUI extends utils {
       this.layoutControlsHeader.classList.add('fade-in');
     }
 
+    showMainNavNewProjectButton() {
+      this.newProject[0].hidden = false;
+    }
+
     readFile(fileUrl) {
       if (fileUrl) {
         const reader = new FileReader();
@@ -237,8 +241,9 @@ class juicerUI extends utils {
         this.hideCallToAction();
         this.enableRangeSelection();
         // Make sure the drawer is closed
-        document.querySelector('.mdl-layout__drawer').classList.remove('is-visible');
+        this.drawer.classList.remove('is-visible');
         document.querySelector('.mdl-layout__obfuscator').classList.remove('is-visible');
+        this.showMainNavNewProjectButton();
       } else {
         console.log('Error: unable to select files');
         this.stopSpinner();
@@ -300,8 +305,10 @@ class juicerUI extends utils {
         this.picker.click();
       });
 
-      this.newProject.addEventListener('click', (e) => {
-        this.picker.click();
+      this.newProject.forEach((item) => {
+      	item.addEventListener('click', (e) => {
+        	this.picker.click();
+      	});
       });
 
       window.addEventListener('keydown', (e) => {

@@ -84,6 +84,14 @@ gulp.task('copy', () =>
     .pipe($.size({title: 'copy'}))
 );
 
+// Local webfont script instead of CDN
+gulp.task('copy-webfont-script', () =>
+  gulp.src(['app/scripts/webfont.js'], {
+    dot: true
+  }).pipe(gulp.dest('dist/scripts'))
+    .pipe($.size({title: 'copy'}))
+);
+
 // Compile and automatically prefix stylesheets
 gulp.task('styles', () => {
   const AUTOPREFIXER_BROWSERS = [
@@ -237,7 +245,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['lint', 'html', 'scripts', 'ptt', 'images', 'copy'],
+    ['lint', 'html', 'scripts', 'ptt', 'images', 'copy', 'copy-webfont-script'],
     'generate-service-worker', 'inline-critical-css',
     cb
   )

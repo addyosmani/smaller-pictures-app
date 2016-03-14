@@ -257,6 +257,11 @@ class juicerUI extends utils {
       if (this.drawer.classList.contains('is-visible')) {
         // if tab or shift-tab pressed
         if (e.keyCode === this.TAB_KEY) {
+
+          // With the drawer open, focus first shifts to the new-desktop-project
+          // menu item. Change tabindex to address this.
+		  this.newProject[0].setAttribute('tabindex', '-1');
+
           // Get list of focusable items
           let focusableItems = this.drawerNavigationItems;
           // Get the number of focusable items

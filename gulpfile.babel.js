@@ -296,7 +296,7 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
       `${rootDir}/styles/main.css`
     ],
     // Translates a static file path to the relative URL that it's served from.
-    stripPrefix: path.join(rootDir, path.sep)
+    stripPrefix: rootDir + '/'
   });
 });
 

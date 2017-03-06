@@ -332,7 +332,7 @@ class juicerUI extends utils {
         }
       });
 
-      this.r.addEventListener('change', (e) => {
+      this.r.addEventListener('mouseup', (e) => {
         this.orchestrateEncode(this.r);
       });
 
